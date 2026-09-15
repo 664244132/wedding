@@ -1,106 +1,221 @@
 /* CSS/style_services.css */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sarabun:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sarabun:wght@200;300;400;500;600;700&display=swap');
 
 :root {
-    --primary-gold: #b38b59;
+    /* Luxury Wedding Design Tokens (ตาม CSSCodingGuide.md) */
+    --gold-primary: #c5a059;
+    --gold-light: #e2c285;
+    --gold-accent: #d4af37;
+    --dark-wedding: #4a3b2b;
+    --dark-text: #3a2e24;
+    --dark-bg: #1a1a1a;
     --soft-cream: #fdfaf5;
-    --deep-brown: #5d4a37;
-    --white-glass: rgba(255, 255, 255, 0.9);
+    --cream-alt: #f7f1e6;
+    --surface-white: #ffffff;
+    --border-gold-subtle: rgba(197, 160, 89, 0.2);
+    --shadow-gold: rgba(197, 160, 89, 0.25);
+    --shadow-card: rgba(93, 74, 55, 0.12);
+    --white-glass: rgba(255, 255, 255, 0.92);
 }
 
 body {
-    /* ปรับเป็นพื้นหลังมืด (Dark Overlay) แบบในรูป image_a59854.jpg */
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+    background: linear-gradient(rgba(26, 20, 15, 0.78), rgba(26, 20, 15, 0.78)), 
                 url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920') !important;
     background-size: cover !important;
     background-position: center !important;
     background-attachment: fixed !important;
-    
     font-family: 'Sarabun', sans-serif;
+    color: var(--dark-text);
     margin: 0;
     padding-top: 140px; 
 }
 
-/* ส่วนหัวข้อ: ปรับสีตัวอักษรให้สว่างขึ้นเพื่อให้เด่นบนพื้นหลังมืด */
+/* Typography */
 .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 48px;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
     font-style: italic;
-    color: #ffffff; /* เปลี่ยนเป็นสีขาวเพื่อให้เข้ากับพื้นหลังมืด */
-    margin-bottom: 5px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .section-subtitle {
-    letter-spacing: 5px;
-    color: var(--primary-gold);
+    letter-spacing: 6px;
+    color: var(--gold-light);
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 0.9rem;
 }
 
 .title-line {
-    width: 50px;
+    width: 60px;
     height: 2px;
-    background: var(--primary-gold);
-    margin: 25px auto;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    margin: 20px auto 30px auto;
 }
 
-/* --- ส่วนที่เหลือคงเดิมตามโค้ดที่คุณส่งมา --- */
-
+/* Service Card on main page */
 .service-card {
     background: var(--white-glass) !important;
-    border: none !important;
-    border-radius: 0px !important; 
+    border: 1px solid var(--border-gold-subtle) !important;
+    border-radius: 20px !important; 
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* เพิ่มเงาให้เข้มขึ้นเล็กน้อย */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     cursor: pointer;
-    padding: 40px 20px !important;
+    padding: 35px 25px !important;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
     background: #ffffff !important;
+    border-color: var(--gold-primary) !important;
 }
 
-.service-icon {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    display: block;
+.service-icon-img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 18px;
+    border: 3px solid var(--gold-light);
+    padding: 4px;
+    background: #fff;
+    box-shadow: 0 5px 15px var(--shadow-gold);
+    transition: transform 0.3s ease;
 }
 
+.service-card:hover .service-icon-img {
+    transform: scale(1.05);
+}
+
+/* Modal Styling */
 .modal-content {
-    border-radius: 0px !important; 
-    border: none !important;
+    border-radius: 24px !important; 
+    border: 1px solid var(--border-gold-subtle) !important;
     background: var(--soft-cream) !important;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-gold-subtle) !important;
+}
+
+.modal-header .modal-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--dark-wedding);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Outfit Selection Card */
+.item-card-wrapper {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    height: 100%;
 }
 
 .item-content {
-    border: 1px solid #eee;
-    border-radius: 0px;
-    padding: 5px;
-    background: #fff;
-    transition: 0.3s;
+    border: 1.5px solid #e8e2d8;
+    border-radius: 16px;
+    background: #ffffff;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
+.item-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px var(--shadow-card);
+    border-color: var(--gold-light);
+}
+
+.item-thumb-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f0ede6;
+}
+
+.item-thumb-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.item-content:hover .item-thumb-container img {
+    transform: scale(1.04);
+}
+
+/* Active Radio Selection State */
 .item-radio:checked + .item-content {
-    border: 2px solid var(--primary-gold);
-    background: #fff;
+    border: 2px solid var(--gold-primary) !important;
+    background: #fffdfa;
+    box-shadow: 0 8px 25px var(--shadow-gold);
 }
 
-.btn-select-main {
-    background: var(--deep-brown) !important;
-    color: white !important;
-    border-radius: 0px !important;
-    padding: 15px !important;
+.item-radio:checked + .item-content .select-indicator {
+    display: flex !important;
+}
+
+.select-indicator {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    background: var(--gold-primary);
+    color: #ffffff;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
     font-size: 14px;
-    letter-spacing: 2px;
-    border: none !important;
-    text-transform: uppercase;
-    transition: 0.3s;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    z-index: 5;
 }
 
-.btn-select-main:hover {
-    background: var(--primary-gold) !important;
+.price-badge {
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+    color: #ffffff;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 6px rgba(197, 160, 89, 0.3);
+}
+
+/* Buttons */
+.btn-luxury {
+    background: linear-gradient(135deg, var(--dark-wedding), #2e2318) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--gold-primary) !important;
+    border-radius: 30px !important;
+    padding: 14px 28px !important;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-luxury:hover {
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-light)) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: 0 6px 20px var(--shadow-gold);
+    transform: translateY(-2px);
+}
+
+/* Accessibility Focus Ring */
+a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--gold-primary);
+    outline-offset: 2px;
 }

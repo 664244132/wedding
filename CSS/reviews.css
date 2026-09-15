@@ -1,0 +1,72 @@
+/* CSS/reviews.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sarabun:wght@200;300;400;500;600&display=swap');
+
+:root {
+    --primary-gold: #b38b59;
+    --deep-brown: #5d4a37;
+}
+
+body.reviews-page {
+    /* พื้นหลังมืดสนิท Overlay 80% เพื่อความหรูหราตามแบบหน้าจอง */
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    font-family: 'Sarabun', sans-serif;
+    color: #ffffff;
+}
+
+/* ส่วนหัวข้อ: ปรับสีเป็นขาวและทองเพื่อให้ตัดกับพื้นหลังมืด */
+.reviews-page h1 {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff !important;
+    font-size: 42px;
+    font-style: italic;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+}
+
+.reviews-page .text-muted {
+    color: rgba(255, 255, 255, 0.7) !important;
+    letter-spacing: 1px;
+}
+
+/* ดีไซน์การ์ดรีวิว: ใช้สีขาวนวลตัดกับพื้นหลังมืด */
+.reviews-page .card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: none !important;
+    border-radius: 0px !important; /* ทรงเหลี่ยม Minimal ตามสไตล์เว็บคุณ */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+    transition: transform 0.3s ease;
+}
+
+.reviews-page .card:hover {
+    transform: translateY(-10px);
+}
+
+/* ปรับสีตัวอักษรภายในการ์ดให้อ่านง่าย */
+.reviews-page .card h5 {
+    color: var(--deep-brown) !important;
+}
+
+.reviews-page .card p.text-secondary {
+    color: #555 !important;
+}
+
+/* ปุ่ม SHARE YOUR EXPERIENCE */
+.reviews-page .btn-share-trigger {
+    background: var(--primary-gold) !important;
+    color: white !important;
+    border-radius: 0px !important;
+    padding: 15px 40px !important;
+    letter-spacing: 2px;
+    font-weight: 600;
+    border: none !important;
+    transition: 0.3s;
+}
+
+.reviews-page .btn-share-trigger:hover {
+    background: var(--deep-brown) !important;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}

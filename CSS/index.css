@@ -1,0 +1,103 @@
+/* CSS/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sarabun:wght@200;300;400;500&display=swap');
+
+:root {
+    --primary-gold: #b38b59;
+    --soft-cream: #fdfaf5;
+    --deep-brown: #5d4a37;
+    --glass-white: rgba(255, 255, 255, 0.85);
+}
+
+body {
+    background-color: var(--soft-cream);
+    font-family: 'Sarabun', sans-serif;
+    color: var(--deep-brown);
+}
+
+/* Hero Section ดีไซน์ใหม่ */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(93, 74, 55, 0.3), rgba(93, 74, 55, 0.3)), 
+                url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* เอฟเฟกต์เลื่อนนิ่งๆ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero-content {
+    backdrop-filter: blur(2px);
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 8vw, 80px);
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+/* ปุ่มสไตล์พรีเมียม */
+.btn-premium {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 35px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    transition: all 0.4s ease;
+}
+
+.btn-premium:hover {
+    background: white;
+    color: var(--deep-brown);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ส่วนไอคอนบริการ (เลียนแบบแถบด้านล่างในรูป) */
+.service-bar {
+    background: var(--glass-white);
+    backdrop-filter: blur(10px);
+    margin-top: -50px;
+    position: relative;
+    z-index: 10;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(179, 139, 89, 0.1);
+    border: 1px solid rgba(179, 139, 89, 0.2);
+}
+
+.service-item {
+    padding: 30px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.service-item:hover {
+    background: white;
+    transform: scale(1.02);
+}
+
+.service-item i {
+    font-size: 24px;
+    color: var(--primary-gold);
+    display: block;
+    margin-bottom: 10px;
+}

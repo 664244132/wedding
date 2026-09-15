@@ -1,0 +1,131 @@
+/* CSS/packages.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sarabun:wght@200;300;400;500;600&display=swap');
+
+:root {
+    --primary-gold: #b38b59;
+    --soft-cream: #fdfaf5;
+    --deep-brown: #5d4a37;
+    --white-glass: rgba(255, 255, 255, 0.95); /* ปรับให้ทึบขึ้นเล็กน้อยเพื่อตัดกับพื้นหลังมืด */
+}
+
+body.packages-page {
+    /* ใช้พื้นหลังมืด (Dark Overlay 75-80%) ตามแบบหน้าจอง image_a59854.jpg */
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+                url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    font-family: 'Sarabun', sans-serif;
+    margin: 0;
+}
+
+.content-wrapper {
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+/* ส่วนหัวข้อ: ปรับสีเป็นขาว/ทอง เพื่อให้โดดเด่นบนพื้นหลังมืด */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-style: italic;
+    color: #ffffff; /* เปลี่ยนเป็นสีขาวเพื่อให้ดู Luxury บนพื้นมืด */
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
+}
+
+.section-subtitle {
+    letter-spacing: 6px;
+    color: var(--primary-gold);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* ดีไซน์การ์ดแพ็กเกจ ทรงเหลี่ยม Minimal */
+.package-card {
+    background: var(--white-glass) !important;
+    border: 1px solid rgba(179, 139, 89, 0.2) !important;
+    border-radius: 0px !important; 
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    /* เพิ่มเงาให้ลึกขึ้นเพื่อให้การ์ดดูลอยออกมา */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.package-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    border-color: var(--primary-gold) !important;
+}
+
+.package-header {
+    background-color: var(--deep-brown);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.package-header.gold {
+    background-color: var(--primary-gold);
+}
+
+.package-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--primary-gold);
+    margin: 25px 0;
+    font-weight: 700;
+}
+
+.package-list {
+    list-style: none;
+    padding: 0 35px;
+    font-size: 14px;
+    color: #444;
+    line-height: 2.4;
+}
+
+.package-list li::before {
+    content: "•";
+    color: var(--primary-gold);
+    display: inline-block; 
+    width: 1.2em;
+    margin-left: -1.2em;
+    font-weight: bold;
+}
+
+/* ปุ่มกดจองในหน้าแพ็กเกจ ทรงเหลี่ยม */
+.btn-select {
+    background: var(--deep-brown);
+    color: white;
+    border-radius: 0px;
+    padding: 15px 40px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    transition: 0.3s;
+    border: none;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.btn-select:hover {
+    background: var(--primary-gold);
+    color: white;
+    box-shadow: 0 5px 15px rgba(179, 139, 89, 0.4);
+}
+
+/* ป้ายยอดนิยม */
+.badge-popular {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--primary-gold);
+    color: white;
+    padding: 8px 20px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}

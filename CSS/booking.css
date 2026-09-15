@@ -1,0 +1,145 @@
+/* CSS/booking.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sarabun:wght@300;400;600;700&display=swap');
+
+:root { 
+    --gold: #b38b59; 
+    --gold-light: #d4b996;
+    --dark-text: #3d3124; 
+    --bg-soft: #fdfaf5;
+    --white: #ffffff;
+}
+
+body { 
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1920') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    font-family: 'Sarabun', sans-serif; 
+    padding-top: 100px;
+    color: var(--dark-text);
+}
+
+/* การ์ดหลัก: เน้นมิติ Floating */
+.booking-card { 
+    background: rgba(255, 255, 255, 0.98) !important; 
+    border: 1px solid var(--gold-light) !important; 
+    border-radius: 0px !important; 
+    padding: 60px !important;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3) !important;
+    position: relative;
+}
+
+/* ตกแต่งมุมทอง (Elegant Corner) */
+.booking-card::before {
+    content: "";
+    position: absolute;
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    border: 1px solid rgba(179, 139, 89, 0.2);
+    pointer-events: none;
+}
+
+.reservation-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 3.5rem;
+    color: var(--white);
+    text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+}
+
+/* ปุ่มเลือกบริการ: ปรับให้นูนและมีน้ำหนัก */
+.service-check { 
+    position: absolute; 
+    opacity: 0; 
+}
+
+.service-btn { 
+    border: 1px solid #ddd; 
+    background: var(--white);
+    padding: 30px 15px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 0px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.service-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-color: var(--gold);
+}
+
+.service-check:checked + .service-btn { 
+    background: var(--dark-text);
+    border-color: var(--gold);
+    box-shadow: 0 15px 30px rgba(179, 139, 89, 0.2);
+}
+
+.service-check:checked + .service-btn .service-title-text {
+    color: var(--gold-light) !important;
+}
+
+.service-check:checked + .service-btn .service-icon-big {
+    transform: scale(1.1);
+}
+
+.service-icon-big {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+/* Form Input: เน้นกรอบชัดแต่ไม่หนาเตอะ */
+.form-label-custom {
+    color: var(--dark-text);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.form-control, .form-select {
+    border: 1.5px solid #d1d1d1 !important;
+    border-radius: 0px !important;
+    padding: 15px !important;
+    background: #fff !important;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--gold) !important;
+    box-shadow: 0 5px 15px rgba(179, 139, 89, 0.1) !important;
+}
+
+/* ปุ่ม Confirm: ทรงพลังและหรูหรา */
+.btn-select-main {
+    background: var(--dark-text) !important;
+    color: var(--white) !important;
+    border: 1px solid var(--gold) !important;
+    letter-spacing: 5px;
+    padding: 22px !important;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 40px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.btn-select-main:hover {
+    background: var(--gold) !important;
+    letter-spacing: 8px;
+    box-shadow: 0 20px 40px rgba(179, 139, 89, 0.3);
+}
+
+/* Map */
+#map { 
+    height: 300px; 
+    border: 1px solid var(--gold-light);
+    margin-top: 15px;
+}

@@ -1,0 +1,131 @@
+/* CSS/gallery.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sarabun:wght@200;300;400;500&display=swap');
+
+:root {
+    --primary-gold: #c5a059;
+    --gold-light: #e2c285;
+    --dark-deep: #0a0a0a;
+}
+
+/* พื้นหลังสไตล์ร้านพรีเวดดิ้ง (มืดสนิทและหรูหรา) */
+body.gallery-page { 
+    background: 
+        linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), 
+        url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Sarabun', sans-serif; 
+    color: #fff;
+    padding-top: 140px; 
+    overflow-x: hidden;
+}
+
+/* เพิ่ม Texture ลายผ้าลินินสีดำจางๆ ทับพื้นหลัง */
+body.gallery-page::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
+    opacity: 0.3;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-subtitle {
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 12px;
+    color: var(--primary-gold);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-style: italic;
+    background: linear-gradient(to right, #fff, var(--gold-light), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* การ์ดแสดงรูปภาพ */
+.gallery-card {
+    position: relative;
+    margin-bottom: 30px;
+    background: #141414;
+    padding: 12px;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 450px; 
+    object-fit: cover;
+    filter: brightness(0.8) sepia(15%);
+    transition: all 1.2s ease;
+}
+
+.gallery-card:hover {
+    border-color: var(--primary-gold);
+    transform: translateY(-10px);
+}
+
+.gallery-card:hover img {
+    filter: brightness(1) sepia(0%);
+    transform: scale(1.05);
+}
+
+/* กรอบเส้นด้านใน (Inner Border) */
+.inner-border {
+    position: absolute;
+    top: 25px; right: 25px; bottom: 25px; left: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+.gallery-card:hover .inner-border {
+    border-color: var(--primary-gold);
+    top: 20px; right: 20px; bottom: 20px; left: 20px;
+}
+
+/* ป้ายข้อมูลรูปภาพ */
+.gallery-info {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    background: rgba(10, 10, 10, 0.95);
+    padding: 15px;
+    text-align: center;
+    transition: all 0.5s ease;
+    opacity: 0;
+    border-top: 2px solid var(--primary-gold);
+}
+
+.gallery-card:hover .gallery-info {
+    bottom: 30px;
+    opacity: 1;
+}
+
+.gallery-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin: 0;
+    color: var(--gold-light);
+}
+
+/* สำหรับรูปทรงสูง */
+.img-tall { height: 600px !important; }

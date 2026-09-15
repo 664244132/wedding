@@ -1,0 +1,37 @@
+/* สไตล์ Navbar แบบ User */
+.user-style-nav {
+    background: rgba(0, 0, 0, 0.8) !important; /* พื้นหลังเข้มโปร่งแสง */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* เส้นขอบสีทองจางๆ */
+    padding: 15px 0;
+}
+
+.nav-link {
+    color: #fff !important;
+    font-weight: 300;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #D4AF37 !important; /* สีทอง */
+}
+
+.btn-logout {
+    border-radius: 20px;
+    padding: 5px 20px;
+    border-color: #D4AF37;
+    color: #D4AF37;
+}
+
+.btn-logout:hover {
+    background: #D4AF37;
+    color: #000;
+}
+
+/* ปรับพื้นหลังหน้า Admin ให้เข้ากับ Navbar */
+.admin-page-topnav {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../img/admin-bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}

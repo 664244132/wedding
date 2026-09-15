@@ -7,7 +7,7 @@
 // ==========================================
 // 1. DATA PREPARATION ZONE (โซนเตรียมข้อมูล)
 // ==========================================
-if (session_status() === PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
     session_start();
 }
 

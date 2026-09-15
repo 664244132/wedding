@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
+    session_start();
+}
 // 1. เชื่อมต่อฐานข้อมูล (ปรับ Path ให้ชัวร์)
 if (file_exists('config.php')) {
     include('config.php');
@@ -9,36 +11,55 @@ if (file_exists('config.php')) {
 
 $error_msg = "";
 
-// 2. ส่วนประมวลผลการเข้าสู่ระบบ
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login_btn'])) {
-    if (isset($conn)) {
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
+// 2. ส่วนประมวลผลการเข้าสู่ระบบ (ใช้ MySQLi Prepared Statement ตาม PHPCodingGuide.md)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_btn'])) {
+    if (isset($conn) && $conn) {
+        $email = trim($_POST['email'] ?? '');
+        $password = $_POST['password'] ?? '';
 
-        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password' LIMIT 1";
-        $result = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($result) == 1) {
-            $user = mysqli_fetch_assoc($result);
-            
-            // เก็บข้อมูลลง Session
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
-
-            // แยกหน้าที่จะไปตามสิทธิ์
-            if ($user['role'] == 'Admin') {
-                $_SESSION['admin_name'] = $user['username'];
-                header("Location: admin/admin_dashboard.php");
-            } else {
-                header("Location: services.php");
-            }
-            exit();
+        if (empty($email) || empty($password)) {
+            $error_msg = "กรุณากรอกอีเมลและรหัสผ่านให้ครบถ้วน";
         } else {
-            $error_msg = "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
+            // Prepared Statement ป้องกัน SQL Injection 100%
+            $sql = "SELECT id, username, password, role FROM users WHERE email = ? LIMIT 1";
+            $stmt = mysqli_prepare($conn, $sql);
+
+            if ($stmt) {
+                mysqli_stmt_bind_param($stmt, "s", $email);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+
+                if ($user = mysqli_fetch_assoc($result)) {
+                    // รองรับทั้ง Bcrypt password_verify และแบบเดิมเพื่อความเข้ากันได้
+                    $is_valid = password_verify($password, $user['password']) || ($password === $user['password']);
+
+                    if ($is_valid) {
+                        // เก็บข้อมูลลง Session
+                        $_SESSION['user_id'] = (int)$user['id'];
+                        $_SESSION['username'] = $user['username'];
+                        $_SESSION['role'] = $user['role'];
+
+                        // แยกหน้าที่จะไปตามสิทธิ์
+                        if ($user['role'] === 'Admin') {
+                            $_SESSION['admin_name'] = $user['username'];
+                            header("Location: admin/admin_dashboard.php");
+                        } else {
+                            header("Location: services.php");
+                        }
+                        exit();
+                    } else {
+                        $error_msg = "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
+                    }
+                } else {
+                    $error_msg = "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
+                }
+                mysqli_stmt_close($stmt);
+            } else {
+                $error_msg = "เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล";
+            }
         }
     } else {
-        $error_msg = "ระบบเชื่อมต่อฐานข้อมูลมีปัญหา (Variable \$conn is null)";
+        $error_msg = "ระบบเชื่อมต่อฐานข้อมูลมีปัญหา";
     }
 }
 ?>
